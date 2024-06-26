@@ -17,15 +17,15 @@ const CardStack = () => {
 
     const drawCard = async (deck_id) => {
         const res = await axios.get(`https://deckofcardsapi.com/api/deck/${deck_id}/draw/?count=1`);
-        setCurrentCard(res.cards.code)
-        console.log(res.cards.code)
+        setCurrentCard(res.data.cards[0])
+        console.log(res.data.cards[0])
     } 
 
     return (
         <>
         <h1>Click to Draw!</h1>
-        <Card />
-        <DrawButton />
+        <Card currentCard={currentCard}/>
+        <DrawButton deckId={deckId} drawCard={drawCard}/>
         </>
     )
 }

@@ -1,9 +1,9 @@
 import React from "react";
 
-const Card = () => {
+const Card = ({currentCard}) => {
     return(
-    <div>
-        
+        <div>
+            <img src={currentCard.image}></img>
         </div>
         )
 }
