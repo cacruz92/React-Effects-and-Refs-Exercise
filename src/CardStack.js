@@ -29,7 +29,9 @@ const CardStack = () => {
     } 
 
     const shuffleDeck = async(deck_id) => {
-        const rest = await axios.get(`https://deckofcardsapi.com/api/deck/${deck_id}/shuffle/`)
+        await axios.get(`https://deckofcardsapi.com/api/deck/${deck_id}/shuffle/`);
+        setCurrentCard({});
+        setCardStack([]);
     }
 
     return (
@@ -38,12 +40,12 @@ const CardStack = () => {
         {cardStack.length < 52 ? (
                 <>
                 <DrawButton deckId={deckId} drawCard={drawCard} />
-                <Card currentCard={currentCard}/>
-                <ShuffleButton deckId={deckId}/>
+                
                 </>
             ) : (
                 <h1>No more cards left!</h1>
             )}
+        <ShuffleButton deckId={deckId} shuffleDeck={shuffleDeck}/>
         <div>
             {cardStack.map((card) => (
                 <img key={card.code} src={card.image} alt={`card-${card.code}`} />
